@@ -675,6 +675,9 @@ else:
             "What are the total deductions?",
             "Show me the average number of absence days per application."
         ]
+        for question in sample_questions:
+            if st.button(question, key=question):
+                query = question
     # Display chat history with results and visualizations.
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
@@ -692,9 +695,9 @@ else:
     query = st.chat_input("Ask your question...")
     if query and query.lower().startswith("no of"):
         query = query.replace("no of", "number of", 1)
-    for sample in sample_questions:
-        if st.button(sample, key=f"{sample}"):
-            query = sample
+    #for sample in sample_questions:
+        #if st.button(sample, key=sample):
+            #query = sample
 
     # Process user query based on its type and display results.
     if query:
