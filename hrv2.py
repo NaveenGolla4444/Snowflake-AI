@@ -662,7 +662,7 @@ else:
 
     # Define sample questions for sidebar buttons.
     if 'query' not in st.session_state:
-    st.session_state.query = ""
+        st.session_state.query = ""
 
     # Create an expander in the sidebar for "Sample Questions"
     with st.sidebar.expander("Sample Questions", expanded=False):
