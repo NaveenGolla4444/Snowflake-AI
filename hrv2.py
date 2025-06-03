@@ -371,7 +371,7 @@ else:
     def is_structured_query(query: str):
         structured_patterns = [
             r'\b(count|number|where|group by|order by|sum|avg|max|min|total|how many|which|show|list|names?|are there any|rejected deliveries?|least|highest|duration|approval)\b',
-            r'\b(processed billable hours|applications interviewed|job requisition|purchase order|Total Annual Base Salary|organization|department|Job Requisitions holded|delivery|received|billed|rejected)\b'
+            r'\b(processed billable hours|applications interviewed|Job Requisitions opened|purchase order|Total Annual Base Salary|organization|department|Job Requisitions holded|delivery|received|billed|rejected)\b'
         ]
         return any(re.search(pattern, query.lower()) for pattern in structured_patterns)
 
@@ -537,7 +537,7 @@ else:
                     "What is the count of employees by organization?",
                     "How many applications were interviewed?",
                     "Show the count of employees by their length of service.",
-                    "Show the count of job requisitions on hold."
+                    "Show the count of Job Requisitions opened."
                 ]
         except Exception as e:
             st.error(f"❌ Failed to generate sample questions: {str(e)}")
@@ -546,7 +546,7 @@ else:
                 "What is the count of employees by organization?",
                 "How many applications were interviewed?",
                 "Show the count of employees by their length of service.",
-                "Show the count of job requisitions on hold."
+                "Show the count of Job Requisitions opened."
             ]
 
     # --- Display Chart Function ---
@@ -672,7 +672,7 @@ else:
             "What is the count of employees by organization?",
             "How many applications were interviewed?",
             "Show the count of employees by their length of service.",
-            "Show the count of job requisitions on hold.",
+            "Show the count of Job Requisitions opened.",
             "How many applicants accepted offers?",
             "What is the total annual base salary?",
             "What are the total deductions?",
