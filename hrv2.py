@@ -371,7 +371,7 @@ else:
     def is_structured_query(query: str):
         structured_patterns = [
             r'\b(count|number|where|group by|order by|sum|avg|max|min|total|how many|which|show|list|names?|are there any|rejected deliveries?|least|highest|duration|approval)\b',
-            r'\b(processed billable hours|supplier|requisition|purchase order|po|organization|department|buyer|delivery|received|billed|rejected|late|on time|late deliveries?|approval duration)\b'
+            r'\b(processed billable hours|applications interviewed|job requisition|purchase order|Total Annual Base Salary|organization|department|Job Requisitions holded|delivery|received|billed|rejected)\b'
         ]
         return any(re.search(pattern, query.lower()) for pattern in structured_patterns)
 
@@ -661,8 +661,13 @@ else:
     init_service_metadata()
 
     # Define sample questions for sidebar buttons.
-    st.sidebar.subheader("Sample Questions")
-    sample_questions = [
+    if 'query' not in st.session_state:
+    st.session_state.query = ""
+
+    # Create an expander in the sidebar for "Sample Questions"
+    with st.sidebar.expander("Sample Questions", expanded=False):
+        st.write("Click a question to try it:")
+        sample_questions = [
             "What are the year-wise processed billable hours?",
             "What is the count of employees by organization?",
             "How many applications were interviewed?",
@@ -671,8 +676,11 @@ else:
             "How many applicants accepted offers?",
             "What is the total annual base salary?",
             "What are the total deductions?",
-            "Show me the average number of absence days per application."]
-
+            "Show me the average number of absence days per application."
+        ]
+        for question in sample_questions:
+            if st.button(question, key=question):
+                st.session_state.query = question
     # Display chat history with results and visualizations.
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
