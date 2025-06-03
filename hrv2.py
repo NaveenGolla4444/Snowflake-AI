@@ -537,7 +537,6 @@ else:
                     "What is the count of employees by organization?",
                     "How many applications were interviewed?",
                     "Show the count of employees by their length of service.",
-                    "Show the count of Job Requisitions opened."
                 ]
         except Exception as e:
             st.error(f"❌ Failed to generate sample questions: {str(e)}")
@@ -546,7 +545,6 @@ else:
                 "What is the count of employees by organization?",
                 "How many applications were interviewed?",
                 "Show the count of employees by their length of service.",
-                "Show the count of Job Requisitions opened."
             ]
 
     # --- Display Chart Function ---
@@ -672,15 +670,11 @@ else:
             "What is the count of employees by organization?",
             "How many applications were interviewed?",
             "Show the count of employees by their length of service.",
-            "Show the count of Job Requisitions opened.",
             "How many applicants accepted offers?",
             "What is the total annual base salary?",
             "What are the total deductions?",
             "Show me the average number of absence days per application."
         ]
-        for question in sample_questions:
-            if st.button(question, key=question):
-                st.session_state.query = question
     # Display chat history with results and visualizations.
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
@@ -699,7 +693,7 @@ else:
     if query and query.lower().startswith("no of"):
         query = query.replace("no of", "number of", 1)
     for sample in sample_questions:
-        if st.sidebar.button(sample, key=f"sample_{sample}"):
+        if st.button(sample, key=f"{sample}"):
             query = sample
 
     # Process user query based on its type and display results.
