@@ -658,9 +658,9 @@ else:
     semantic_model_filename = SEMANTIC_MODEL.split("/")[-1]
     init_service_metadata()
 
-    # Define sample questions for sidebar buttons.
-    if 'query' not in st.session_state:
-        st.session_state.query = ""
+    query = st.chat_input("Ask your question...")
+    if query and query.lower().startswith("no of"):
+        query = query.replace("no of", "number of", 1)
 
     # Create an expander in the sidebar for "Sample Questions"
     with st.sidebar.expander("Sample Questions", expanded=False):
@@ -691,13 +691,6 @@ else:
                     st.write("Visualization:")
                     display_chart_tab(message["results"], prefix=f"chart_{hash(message['content'])}", query=message.get("query", ""))
 
-    # Handle user query input and sample question buttons.
-    query = st.chat_input("Ask your question...")
-    if query and query.lower().startswith("no of"):
-        query = query.replace("no of", "number of", 1)
-    #for sample in sample_questions:
-        #if st.button(sample, key=sample):
-            #query = sample
 
     # Process user query based on its type and display results.
     if query:
