@@ -371,7 +371,7 @@ else:
     def is_structured_query(query: str):
         structured_patterns = [
             r'\b(count|number|where|group by|order by|sum|avg|max|min|total|how many|which|show|list|names?|are there any|rejected deliveries?|least|highest|duration|approval)\b',
-            r'\b(vendor|supplier|requisition|purchase order|po|organization|department|buyer|delivery|received|billed|rejected|late|on time|late deliveries?|approval duration)\b'
+            r'\b(processed billable hours|supplier|requisition|purchase order|po|organization|department|buyer|delivery|received|billed|rejected|late|on time|late deliveries?|approval duration)\b'
         ]
         return any(re.search(pattern, query.lower()) for pattern in structured_patterns)
 
